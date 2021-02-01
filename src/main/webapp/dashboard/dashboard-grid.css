@@ -1,0 +1,28 @@
+
+
+.navbar.navbar-dark.bg-primary {
+    color: white;
+}
+
+.navbar.navbar-light.bg-light {
+    padding-inline: 10%;
+    width: 100%;
+}
+
+@media (max-width: 1000px) {
+    head{
+        font-size: 30px;
+    }
+    body {
+        font-size: 20px;
+    }
+
+    .col-3 {
+        display: none;
+    }
+
+    .col-1 {
+        position: float-right;
+    }
+
+}
