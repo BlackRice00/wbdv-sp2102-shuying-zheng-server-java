@@ -16,17 +16,38 @@
     width: 100%;
 }
 
-.title-title {
-    width:30%;
+.navbar.navbar-expand-lg.bg-light.sticky-top, .table-hover {
+    padding: 0px;
+    margin: 0px;
 }
 
-.owner-title {
-    width: 20%;
+.navbar-title {
+    width: 35%;
+    color: grey;
+}
+
+.navbar-owner {
+    width: 15%;
+    color: grey;
+}
+
+.navbar-modifier {
+    width: 45%;
+    color: grey;
+}
+
+.navbar-icon {
+    width: 5%;
+    color: grey;
 }
 
 /*******  mobile version ************/
 @media (max-width: 640px) {
     .dashboard, .owner-col, .modified-col {
         display: none;
+    }
+
+    .navbar-icons {
+        float: right;
     }
 }
