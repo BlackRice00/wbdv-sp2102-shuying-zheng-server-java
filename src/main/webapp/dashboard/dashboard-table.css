@@ -16,6 +16,14 @@
     width: 100%;
 }
 
+.title-title {
+    width:30%;
+}
+
+.owner-title {
+    width: 20%;
+}
+
 /*******  mobile version ************/
 @media (max-width: 640px) {
     .dashboard, .owner-col, .modified-col {
