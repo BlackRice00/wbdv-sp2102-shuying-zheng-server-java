@@ -5,7 +5,7 @@ function UserService() {
 
     // POST - Create
     function createUser(user) {
-        return fetch('http://localhost:8080/users', {
+        return fetch('http://users', {
             method: 'POST',
             body: JSON.stringify(user),
             headers: {
@@ -18,7 +18,7 @@ function UserService() {
 
     // GET - Read
     function findAllUsers() {
-        return fetch('http://localhost:8080/users')
+        return fetch('http://users')
             .then(function(response){
                 return response.json()
             })
