@@ -12,7 +12,7 @@ function createUser(user) {
     userService.createUser(user)
         .then(function (actualUser) {
             users.push(actualUser)
-            render(users)
+            renderUsers(users)
         })
 }
 
@@ -23,7 +23,7 @@ function deleteUser(event) {
     userService.deleteUser(theId)
         .then(function (status) {
             users.splice(theIndex, 1)
-            render(users)
+            renderUsers(users)
         })
 }
 
@@ -59,7 +59,7 @@ function updateUser() {
     $lastNameFld.val("")
 }
 
-function render(users) {
+function renderUsers(users) {
     tbody.empty()
     for (var i = 0; i < users.length; i++) {
         var user = users[i]
@@ -121,7 +121,7 @@ function main() {
     userService.findAllUsers()
         .then(function (actualUsersFromServer) {
             users = actualUsersFromServer
-            render(users)
+            renderUsers(users)
         })
 }
 jQuery(main)
