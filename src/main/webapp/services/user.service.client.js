@@ -51,8 +51,7 @@ function AdminUserServiceClient() {
 
     }
     function deleteUser(userId) {
-        return fetch(`${self.url}/${userId}`,
-            {method:'DELETE'})
+        return fetch(`${self.url}/${userId}`, {method:'DELETE'})
     }
 }
 

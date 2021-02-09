@@ -15,11 +15,11 @@ function createUser(user) {
 
 function deleteUser(event) {
     var removeBtn = jQuery(event.target)
-    var index = removeBtn.attr("id")
-    var id = users[index]._id
-    userService.deleteUser(id)
+    var theIndex = removeBtn.attr("id")
+    var theId = users[theIndex]._id
+    userService.deleteUser(theId)
         .then(function (status) {
-            users.splice(index, 1)
+            users.splice(theIndex, 1)
             render(users)
         })
 }
