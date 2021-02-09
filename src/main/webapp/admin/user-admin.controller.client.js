@@ -15,9 +15,13 @@ function createUser(user) {
 
 function deleteUser(event) {
     var removeBtn = jQuery(event.target)
-    var theId = removeBtn.attr("id")
-    users.splice(theId, 1)
-    render(users)
+    var index = removeBtn.attr("id")
+    var id = users[index]._id
+    userService.deleteUser(id)
+        .then(function (status) {
+            users.splice(index, 1)
+            render(users)
+        })
 }
 
 function render(users) {
@@ -74,6 +78,11 @@ function main() {
         $firstNameFld.val("")
         $lastNameFld.val("")
     })
+
     userService.findAllUsers()
+        .then(function (actualUsersFromServer) {
+            users = actualUsersFromServer
+            render(users)
+        })
 }
 jQuery(main)

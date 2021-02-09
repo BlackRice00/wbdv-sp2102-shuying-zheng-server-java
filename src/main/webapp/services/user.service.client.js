@@ -39,7 +39,10 @@ function AdminUserServiceClient() {
     }
 
     function findAllUsers() {
-
+        return fetch(self.url)
+            .then(function (response) {
+            return response.json()
+        })
     }
     function findUserById(userId) {
 
@@ -48,7 +51,8 @@ function AdminUserServiceClient() {
 
     }
     function deleteUser(userId) {
-
+        return fetch(`${self.url}/${userId}`,
+            {method:'DELETE'})
     }
 }
 
