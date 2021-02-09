@@ -9,8 +9,11 @@ var userService = new AdminUserServiceClient()
 var users = []
 
 function createUser(user) {
-    users.push(user)
-    render(users)
+    userService.createUser(user)
+        .then(function (actualUser) {
+            users.push(actualUser)
+            render(users)
+        })
 }
 
 function deleteUser(event) {
@@ -22,6 +25,38 @@ function deleteUser(event) {
             users.splice(theIndex, 1)
             render(users)
         })
+}
+
+var selectedUser
+function selectUser(event) {
+    var selectBtn = jQuery(event.target)
+    var theId = selectBtn.attr("id")
+    selectedUser = users.find(user => user._id === theId)
+    $usernameFld.val(selectedUser.username)
+    $passwordFld.val(selectedUser.password)
+    $firstNameFld.val(selectedUser.firstname)
+    $lastNameFld.val(selectedUser.lastname)
+    $roleFld.val(selectedUser.role)
+}
+
+function updateUser() {
+    selectedUser.username = $usernameFld.val()
+    selectedUser.password = $passwordFld.val()
+    selectedUser.firstname = $firstNameFld.val()
+    selectedUser.lasttname = $lastNameFld.val()
+    selectedUser.role = $roleFld.val()
+
+    userService.updateUser(selectedUser._id, selectedUser)
+        .then(status => {
+            var index = users.findIndex(user => user._id === selectedUser._id)
+            users[index] = selectedUser
+            renderUsers(users)
+        })
+
+    $usernameFld.val("")
+    $passwordFld.val("")
+    $firstNameFld.val("")
+    $lastNameFld.val("")
 }
 
 function render(users) {
@@ -49,6 +84,8 @@ function render(users) {
     }
     jQuery(".wbdv-remove")
         .click(deleteUser)
+    jQuery(".wbdv-select")
+        .click(selectUser)
 }
 
 
@@ -60,11 +97,11 @@ function main() {
     $roleFld = $(".wbdv-roleFld")
 
     $createBtn = jQuery(".wbdv-create")
+    $updateBtn = jQuery(".wbdv-update")
 
     tbody = jQuery("tbody")
 
     $createBtn.click(function () {
-        alert("Create a new user!")
         var newUser = {
             username: $usernameFld.val(),
             password: $passwordFld.val(),
@@ -78,6 +115,8 @@ function main() {
         $firstNameFld.val("")
         $lastNameFld.val("")
     })
+
+    $updateBtn.click(updateUser)
 
     userService.findAllUsers()
         .then(function (actualUsersFromServer) {
