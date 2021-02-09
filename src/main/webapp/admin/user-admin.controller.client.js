@@ -1,6 +1,3 @@
-/***
- * 自己写的
- * ***/
 var $usernameFld
 var $passwordFld
 var $firstNameFld
@@ -8,20 +5,22 @@ var $lastNameFld
 var $roleFld
 var $createBtn
 var tbody
+var userService = new AdminUserServiceClient()
+var users = []
 
-var users = [
-    // {username: "Aaaa", password: "axxx", firstname: "aaa", lastname: "A", role: "STUDENT"},
-    // {username: "Baaa", password: "bxxx", firstname: "aaa", lastname: "b", role: "STUDENT"},
-    // {username: "Caaa", password: "cxxx", firstname: "aaa", lastname: "c", role: "STUDENT"},
-    // {username: "Daaa", password: "cxxx", firstname: "aaa", lastname: "d", role: "STUDENT"}
-]
-
-function creating(user) {
+function createUser(user) {
     users.push(user)
-    rendering(users)
+    render(users)
 }
 
-function rendering(users) {
+function deleteUser(event) {
+    var removeBtn = jQuery(event.target)
+    var theId = removeBtn.attr("id")
+    users.splice(theId, 1)
+    render(users)
+}
+
+function render(users) {
     tbody.empty()
     for (var i = 0; i < users.length; i++) {
         var user = users[i]
@@ -45,12 +44,7 @@ function rendering(users) {
             </tr>')`)
     }
     jQuery(".wbdv-remove")
-        .click(function (event) {
-            var removeBtn = jQuery(event.target)
-            var theId = removeBtn.attr("id")
-            users.splice(theId, 1)
-            rendering(users)
-    })
+        .click(deleteUser)
 }
 
 
@@ -66,13 +60,6 @@ function main() {
     tbody = jQuery("tbody")
 
     $createBtn.click(function () {
-        // creating({
-        //     username: $usernameFld.val(),
-        //     password: $passwordFld.val(),
-        //     firstname: $firstNameFld.val(),
-        //     lastname: $lastNameFld.val(),
-        //     role: $roleFld.val()
-        // })
         alert("Create a new user!")
         var newUser = {
             username: $usernameFld.val(),
@@ -81,11 +68,12 @@ function main() {
             lastname: $lastNameFld.val(),
             role: $roleFld.val()
         }
-        creating(newUser)
+        createUser(newUser)
         $usernameFld.val("")
         $passwordFld.val("")
         $firstNameFld.val("")
         $lastNameFld.val("")
     })
+    userService.findAllUsers()
 }
 jQuery(main)
