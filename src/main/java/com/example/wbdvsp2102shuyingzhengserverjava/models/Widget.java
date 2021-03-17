@@ -1,5 +1,7 @@
 package com.example.wbdvsp2102shuyingzhengserverjava.models;
 
+import com.example.wbdvsp2102shuyingzhengserverjava.controllers.WidgetController;
+
 public class Widget {
     private Long id;
     private String topicId;
