@@ -54,6 +54,25 @@ public class WidgetService {
                 return 1;
             }
         }
-        return -1;
+        return 0;
+    }
+
+    public Integer updateWidget(Long id, Widget widget) {
+        for (int i = 0; i < widgets.size(); ++i) {
+            if (widgets.get(i).getId().equals(id)) {
+                widgets.set(i, widget);
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    public Widget findWidgetById(Long id) {
+        for (int i = 0; i < widgets.size(); ++i) {
+            if (widgets.get(i).getId().equals(id)) {
+                return widgets.get(i);
+            }
+        }
+        return null;
     }
 }
