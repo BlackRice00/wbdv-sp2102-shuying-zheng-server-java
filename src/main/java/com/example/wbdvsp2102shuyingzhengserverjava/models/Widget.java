@@ -18,6 +18,15 @@ public class Widget {
     private Integer width;
     private Integer height;
     private String src;
+    private Boolean ordered;
+
+    public Boolean getOrdered() {
+        return ordered;
+    }
+
+    public void setOrdered(Boolean ordered) {
+        this.ordered = ordered;
+    }
 
     public Integer getWidth() {
         return width;
